@@ -30,7 +30,7 @@ void loop()
   digitalWrite(YELLOW_LED, HIGH);
   
   // Wait
-  delayMicroseconds(10);
+  delayMicroseconds(100);
 
   // Turn LED OFF
   digitalWrite(YELLOW_LED, LOW);
@@ -39,6 +39,9 @@ void loop()
   // Try playing with the values of each delays independently, e.g. delayMicroseconds(100) below. 
   // What will happen and why?
   delayMicroseconds(100);
+
+  // important: if you play with "delay" instead of "delayMicroseconds" you will switch-off/switch-on, like Morse code and play with the intensities
+  
 
   // As for the motor exemple, doing something else that us timeconsuming in the loop will change the brightness of the LED
 }
