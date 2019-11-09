@@ -1,8 +1,8 @@
-/* This program make use of PWMs to drive the motors 
+/* This program make use of PWMs (Pulse Width Modulation) to drive the motors 
  * PWM are controlled by a dedicated circuit in the microprocessors, 
- * so you can do something in the loop while the PWM are being generated
+ * so you can do something else in the loop while the PWM are being generated
  * 
- * -> What have been done in the first code is now "automatic" somehow and allow to do other things in parallel
+ * -> What have been done in the first code ("1_go_straight.ino") is now "automatic" somehow and allow to do other things in parallel
  * -> (it "optimize" the process occuring and you don't need to code everything in the same time, so just better).
  * 
  * We use the motor library for that, see https://pololu.github.io/zumo-32u4-arduino-library/class_zumo32_u4_motors.html
@@ -33,9 +33,10 @@ void loop()
 
   // ALL this below just show you that other things can occur in parallel (thanks to the PWM)
   // This time you can do other things in the loop and it won't impact the speed of the robot
-  // Uncommenting the line below does not impact the speed
+  // (Uncommenting the line below does not impact the speed)
   lcd.gotoXY(0, 0);
   lcd.print(random(100));
   // You can even try adding a long delay of 1 seconds
   // Uncommenting the line below does not impact the speed
   delay(1000);
+}
