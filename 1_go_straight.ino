@@ -1,4 +1,5 @@
-/* This program toggles the motors ON and OFF
+/* WITH THIS CODE THE ZUMO "RUNS" FAST
+ *  This program toggles the motors ON and OFF
  * and is an introduction to the PWM (Pulse Width Modulation) application
  */
 
@@ -10,7 +11,7 @@ Zumo32U4LCD lcd;  // Instanciate the lcd class
 Zumo32U4ButtonA buttonA; // Instanciate the buttonA class
 
 
-// We use #define to give names to each PIN required to move the motors
+// We use "#define" to give names to each PIN required to move the motors
 // See explanation of define at https://www.techonthenet.com/c_language/constants/create_define.php
 // See PIN mappping for motors at https://www.pololu.com/docs/0J63/3.3
 
@@ -24,21 +25,21 @@ Zumo32U4ButtonA buttonA; // Instanciate the buttonA class
 // the setup function is executed only once
 void setup()
 {
-  // We want to send commands so we set all PINs as OUTPUT (INPUT would be for receiving a signal for example)
+  // We want to send commands, so we set all PINs as OUTPUT (INPUT would be for receiving a signal for example)
   // See https://www.arduino.cc/reference/en/language/functions/digital-io/pinmode/
   pinMode(MOTOR_SPEED_RIGHT, OUTPUT);
   pinMode(MOTOR_DIR_RIGHT, OUTPUT);
   pinMode(MOTOR_SPEED_LEFT, OUTPUT);
   pinMode(MOTOR_DIR_LEFT, OUTPUT);
 
-  // We set the direction to LOW which is forward (HIGH is for backward)
+  // We set the direction to LOW which is forward (HIGH is for backward), it is like this we cannot change it (production-design)
   // See https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/
   digitalWrite(MOTOR_DIR_RIGHT, LOW);
   digitalWrite(MOTOR_DIR_LEFT, LOW);
 
   lcd.clear();  // clear the lcd 
   lcd.print("Press A");  // ask user to press button A
-  buttonA.waitForButton(); // wait for the button A to be pressed
+  buttonA.waitForButton(); // wait for the button A to be pressed (otherwise, code will not run)
   lcd.clear(); // clear the lcd again
 }
 
@@ -52,7 +53,7 @@ void loop()
   digitalWrite(MOTOR_SPEED_LEFT, HIGH);
 
   // see https://www.arduino.cc/reference/en/language/functions/time/delay/
-  // you can even do shorter pauses in us
+  // you can even do shorter pauses in micro seconds (us)
   delay(1000);  //  see https://www.arduino.cc/reference/en/language/functions/time/delaymicroseconds/
 
   // Turn both motors OFF
@@ -62,9 +63,12 @@ void loop()
   // pause for some time in ms
   // What happens to the speed, why?
   // you can even do shorter pauses in us
-  delayMicroseconds(10);
+  delay(10);
 
-  // This part is a "bonus" not necessary for the robot movement
+
+
+
+  // This part below is a "bonus" not necessary for the robot movement
   // If you do very short pauses of 1us (pause_duration = 1 and use delayMicroseconds(pause_duration) )
   // Uncomment below to try it out
   // The speed of the robot decreases, why?
