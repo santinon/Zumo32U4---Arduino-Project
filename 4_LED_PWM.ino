@@ -46,7 +46,7 @@ void loop()
 
   // Important : play with the 2 delays above to see what happen (tip: see for similar values to have a better understanding)
 
-  // This part below is one more time a bonus that shows that the PWD functionality allow to run over things in parallel without slowing the code execution (here the yellow_LED brightness alternations)
+  // This part below is one more time a bonus that shows that the PWM functionality allow to run over things in parallel without slowing the code execution (here the yellow_LED brightness alternations)
   lcd.gotoXY(0, 0);
   lcd.print(random(100));
 }
