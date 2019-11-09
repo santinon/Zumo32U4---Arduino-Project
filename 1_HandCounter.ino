@@ -1,7 +1,7 @@
 /* This program counts the number of time PIN 8 changes state
    PIN 8 is connected to the HALL effect sensor of the LEFT motor
-   This sensor detect the passage of a magnet that is connected to the shaft of the motor
-   IMPORTANT : turn the left "wheels" of you zumo machine!
+   This sensor detect the passage of a magnet that is connected to the shaft of the left motor
+   IMPORTANT : turn the left "wheels" of you Zumo machine!
 */
 
 #include <Wire.h>
@@ -52,15 +52,15 @@ void loop()
   lcd.gotoXY(0, 0);
   lcd.print(count);
 
-  // If we do something else while we try to monitor PIN_LEFT_SENSOR inside that loop
-  // Then we miss a lot of events on PIN_LEFT_SENSOR because we are busy doing something else
-  // Try by uncommenting the code below and see the counter totally fails:
+  // If we do something else while we try to monitor PIN_LEFT_SENSOR inside that loop, then we will miss a lot of events on PIN_LEFT_SENSOR because we are busy doing something else
+  // Try by uncommenting the code below and see the counter totally fails (4 lines):
   motors.setSpeeds(75, -75);
   delay(500);
   motors.setSpeeds(-75, 75);
   delay(500);
 
 /*
-Explanation : the hardware of the Zumo cannot reads the count, indicate it and also has his motors running in the same time on the optimal way (so it is still working but badly). There will be a way mentionned in the next code...
+Explanation : the hardware of the Zumo cannot reads the count, indicate it and also has his motors running in the same time on the optimal way (so it is still working but badly). 
+              There will be a way mentionned in the next code to allow the reading and to do other stuff in parallel...
  */
 }
