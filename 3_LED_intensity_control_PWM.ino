@@ -46,7 +46,8 @@ void loop()
 
   /*   As for the motor exemple (code 1), doing something else that is timeconsuming in the loop will change the brightness of the LED
   * Uncomment the code below ( 3 lines) to see that the intensities decrease
-*/
+  */
+  
   //lcd.gotoXY(0, 0);
   //lcd.print(random(100));
   //delay(1000);
