@@ -1,6 +1,6 @@
 /* This program make use of PWMs (Pulse Width Modulation) to drive the motors 
  * PWM are controlled by a dedicated circuit in the microprocessors, 
- * so you can do something else in the loop while the PWM are being generated
+ * so you can do something else in the loop while the PWM are being generated via the "setSpeeds" (see below)
  * 
  * -> What have been done in the first code ("1_go_straight.ino") is now "automatic" somehow and allow to do other things in parallel
  * -> (it "optimize" the process occuring and you don't need to code everything in the same time, so just better).
