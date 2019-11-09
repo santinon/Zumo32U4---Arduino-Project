@@ -1,9 +1,9 @@
 /* This program counts the number of time PIN 8 changes state
- * PIN 8 is connected to the HALL effect sensor of the LEFT motor
- * This sensor detect the passage of a magnet that is connected to the shaft of the motor
- * IMPORTANT : turn the left "wheels" of you zumo machine!
- */
- 
+   PIN 8 is connected to the HALL effect sensor of the LEFT motor
+   This sensor detect the passage of a magnet that is connected to the shaft of the motor
+   IMPORTANT : turn the left "wheels" of you zumo machine!
+*/
+
 #include <Wire.h>
 #include <Zumo32U4.h>
 
@@ -27,7 +27,7 @@ void setup()
 
   // initiate count to 0
   count = 0;
-  
+
   // see https://www.arduino.cc/reference/en/language/functions/digital-io/digitalread/
   // initiate: previous_state = state of PIN_LEFT_SENSOR   (= 0 or 1)
   previous_state = digitalRead(PIN_LEFT_SENSOR);
@@ -36,13 +36,13 @@ void setup()
 
 void loop()
 {
-  // each time we restart the loop, the current state of PIN_LEFT_SENSOR is readed
+  // each time we restart the loop, the current state of PIN_LEFT_SENSOR is readded
   current_state = digitalRead(PIN_LEFT_SENSOR);
 
   // if the state has changed since last execution of the loop
   if (current_state != previous_state) {
     // add one to count
-    count += 1; 
+    count += 1;
   }
 
   // set previous_state to current_state before next execution of the loop
@@ -51,15 +51,16 @@ void loop()
   // print count on the top-left of the screen
   lcd.gotoXY(0, 0);
   lcd.print(count);
-  lcd.gotoXY(0, 1);
-  lcd.print(previous_state);
 
   // If we do something else while we try to monitor PIN_LEFT_SENSOR inside that loop
   // Then we miss a lot of events on PIN_LEFT_SENSOR because we are busy doing something else
-  // Try by uncommenting the code below and see the counter totally fails
-  //motors.setSpeeds(75, -75);
-  //delay(500);
-  //motors.setSpeeds(-75, 75);
-  //delay(500);
-  
+  // Try by uncommenting the code below and see the counter totally fails:
+  motors.setSpeeds(75, -75);
+  delay(500);
+  motors.setSpeeds(-75, 75);
+  delay(500);
+
+/*
+Explanation : the hardware of the Zumo cannot reads the count, indicate it and also has his motors running in the same time on the optimal way (so it is still working but badly). There will be a way mentionned in the next code...
+ */
 }
