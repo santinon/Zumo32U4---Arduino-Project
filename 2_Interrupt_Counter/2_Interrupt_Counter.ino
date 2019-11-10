@@ -24,7 +24,7 @@ int count;
 
 void setup()
 {
-  // initialise count to 0 at start
+  //initialise count to 0 at start
   count = 0;
 
   attachInterrupt(digitalPinToInterrupt(PIN_RIGHT_SENSOR), on_interrupt, CHANGE);
