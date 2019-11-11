@@ -102,7 +102,7 @@ void waitForButtonAndCountDown()
 }
 
 
-
+// function detecting the distance to a Zumo-enemy, based on 8 different IR-waves intensities ("distance gradient") detecting from a cloth to a long distance (max 20-30 cm)
 void DetectEnemy(){
   const static uint16_t brightnessLevels[] = { 1, 2, 4, 9, 17, 25, 32, 45 }; //list of intensities (uint16_t = unsigned char = 8 bit number from 0 to 255)
   static int nLevels = sizeof(brightnessLevels) /sizeof(uint16_t); //nLevels = 8 in fine
@@ -127,24 +127,29 @@ void DetectEnemy(){
   
 }
 
+
+
+// detects an approximative distance and mostly position of the enemy-zumo-robot compared to its position itself
 void FollowEnemy(){
   //lcd.gotoXY(0, 0);
   //lcd.print("Enemy ");
-  int diff = abs(LeftNum -RightNum);   // diff = threshold (in absolute value ("abs")) fixed to be sure about the direction of the zumo-enemy's position
-  // if left
+  int diff = abs(LeftNum -RightNum);   // diff = threshold (in absolute values ("abs")) fixed to be sure about the direction of the zumo-enemy's position
+  
+  // if left, goes left
   if (LeftNum > RightNum and diff >=3) {
     motors.setSpeeds(-100,100);
   }
-  // if right
+  // if right, goes right
   else if (RightNum > LeftNum and diff >=3) {
     motors.setSpeeds(100,-100);
   }
-  // if not clearly at the left or at the right
+  // if not clearly at the left or at the right, somewhere in the middle -> go straight forward
   else{
     motors.setSpeeds(300,300); 
   }
   
 }
+
 
 
 // black-line detection code
