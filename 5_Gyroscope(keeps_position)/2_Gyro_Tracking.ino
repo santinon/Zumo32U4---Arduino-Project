@@ -123,4 +123,5 @@ void loop()
     lcd.gotoXY(0, 1);
     lcd.print(current_angle);
   }  
+
 }
