@@ -27,11 +27,15 @@ bool lineDetected[NUM_SENSORS];     // for boolean values, line or not line (lis
 
 int lastSampleTime = 0;
 
+
+
 void setup()
 {
   // this initializes the sensors
   lineSensors.initFiveSensors();
 }
+
+
 
 void loop()
 {
