@@ -3,6 +3,8 @@
  *  The logic is to check if somehting is closer to one side or the other, and then turn in the direction to compensate it
  *  
  *  To measure the distance of an object, we simply sum the number of times a sensor is ON, over each of the "brightnessLevels"
+ *  -> big distance to left, go to left to make it smaller
+ *  -> big distance to right, go to right to make it smaller
  *  
  */
 
