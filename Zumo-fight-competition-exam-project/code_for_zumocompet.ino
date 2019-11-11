@@ -16,8 +16,8 @@
 #define TURN_DURATION     300  // ms
 #define NUM_SENSORS 5         // because 5 line-sensors in front of the Zumo
 //pins
-#define FRONT_SENSOR  22      // pin of 3 detections exists
-#define LINE_SENSOR_LED  11   // pin of 5 line-sensors
+#define FRONT_SENSOR  22      // pin of the 3 proximity-sensors 
+#define LINE_SENSOR_LED  11   // pin of the 5 line-sensors
 
 //classes ?
 Zumo32U4LCD lcd;
