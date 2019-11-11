@@ -109,8 +109,8 @@ void DetectEnemy(){
   LeftNum = 0;
 
   for (uint8_t i = 0; i < nLevels; i++) {
-    Zumo32U4IRPulses::start(Zumo32U4IRPulses::Left, brightnessLevels[i], 420);
-    delayMicroseconds(421);
+    Zumo32U4IRPulses::start(Zumo32U4IRPulses::Left, brightnessLevels[i], 420);  // sending PWM-pulsing-signal on LEFT LED using "Zumo32U4IRPulses" class (LED-variable, PWM-duty-cylce proportional brightnesslevel, signal-period ~ 38kHz)
+    delayMicroseconds(421); // default pulse (guarantees we are not missing output pulses by reading the sensor too soon)
     LeftNum += int(!digitalRead(FRONT_SENSOR));
     //lcd.print(!digitalRead(FRONT_SENSOR));
     Zumo32U4IRPulses::stop();
@@ -118,8 +118,8 @@ void DetectEnemy(){
   RightNum = 0;
 
   for (uint8_t i = 0; i < nLevels; i++) {
-    Zumo32U4IRPulses::start(Zumo32U4IRPulses::Right, brightnessLevels[i], 420);
-    delayMicroseconds(421);
+    Zumo32U4IRPulses::start(Zumo32U4IRPulses::Right, brightnessLevels[i], 420); // sending PWM-pulsing-signal on RIGHT LED using "Zumo32U4IRPulses" class (LED-variable, PWM-duty-cylce proportional brightnesslevel, signal-period ~ 38kHz)
+    delayMicroseconds(421);  // default pulse (guarantees we are not missing output pulses by reading the sensor too soon)
     RightNum += int(!digitalRead(FRONT_SENSOR));
     //lcd.print(!digitalRead(FRONT_SENSOR));
     Zumo32U4IRPulses::stop();
