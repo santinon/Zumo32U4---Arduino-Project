@@ -105,7 +105,7 @@ void waitForButtonAndCountDown()
 // function detecting the distance to a Zumo-enemy, based on 8 different IR-waves intensities ("distance gradient") detecting from a cloth to a long distance (max 20-30 cm)
 void DetectEnemy(){
   const static uint16_t brightnessLevels[] = { 1, 2, 4, 9, 17, 25, 32, 45 }; //list of intensities (uint16_t = unsigned char = 8 bit number from 0 to 255)
-  static int nLevels = sizeof(brightnessLevels) /sizeof(uint16_t); //nLevels = 8 in fine
+  static int nLevels = sizeof(brightnessLevels) /sizeof(uint16_t); //nLevels = 8 in fine (compute size of "brightnessLevels" in memory and divide by the size of a single integer element)
   LeftNum = 0;
 
   for (uint8_t i = 0; i < nLevels; i++) {
@@ -152,7 +152,7 @@ void FollowEnemy(){
 
 
 
-// black-line detection code
+// black-line detection code (with line-sensors)
 void BorderDetect(){
   //lcd.gotoXY(0, 1);
   //lcd.gotoXY(0, 0);
