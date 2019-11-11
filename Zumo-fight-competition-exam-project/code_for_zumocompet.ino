@@ -10,14 +10,14 @@
 //constantes
 #define QTR_THRESHOLD     700  // color-light-reflectance threshold (for black&white line-detection)
 #define REVERSE_SPEED     200  // 0 is stopped, 400 is full speed
-#define TURN_SPEED        300
-#define FORWARD_SPEED     200
+#define TURN_SPEED        300  // speed for turn
+#define FORWARD_SPEED     200  // speed for going-forward
 #define REVERSE_DURATION  100  // ms
 #define TURN_DURATION     300  // ms
+#define NUM_SENSORS 5         // because 5 line-sensors in front of the Zumo
 //pins
-#define FRONT_SENSOR  22
-#define LINE_SENSOR_LED  11
-#define NUM_SENSORS 3
+#define FRONT_SENSOR  22      // pin of 3 detections exists
+#define LINE_SENSOR_LED  11   // pin of 5 line-sensors
 
 //classes ?
 Zumo32U4LCD lcd;
@@ -159,7 +159,7 @@ void BorderDetect(){
   //lcd.print(lineSensorValues[0]);
 
   // If sensor-1 detects left-black-border-line, it stops first, turns to right, goes straight
-  if (lineSensorValues[0] < QTR_THRESHOLD){
+  if (lineSensorValues[0] > QTR_THRESHOLD){
     motors.setSpeeds(-REVERSE_SPEED, -REVERSE_SPEED);
     delay(REVERSE_DURATION);
     motors.setSpeeds(TURN_SPEED, -TURN_SPEED);
@@ -167,7 +167,7 @@ void BorderDetect(){
     motors.setSpeeds(FORWARD_SPEED, FORWARD_SPEED);
   }
   // If sensor-4 detects right-black-border-line, it stops first, turns to left, goes straight
-  else if (lineSensorValues[NUM_SENSORS - 1] < QTR_THRESHOLD) // NUM_SENSORS = 5; so 5-1 = 4
+  else if (lineSensorValues[NUM_SENSORS - 1] > QTR_THRESHOLD) // NUM_SENSORS = 5; so 5-1 = 4
   {
     // If rightmost sensor detects line, reverse and turn to the
     // left.
