@@ -43,7 +43,7 @@ void setup()
   pinMode(LINE_SENSOR_LED, OUTPUT);   // line-sensors can emitt IR ("output")
   digitalWrite(LINE_SENSOR_LED, LOW); // line-sensors are LOW (not HIGH) state in the beginning because they wait for a comming signal 
 
-  pinMode(FRONT_SENSOR, INPUT_PULLUP); 
+  pinMode(FRONT_SENSOR, INPUT_PULLUP); // all proximity-sensors fixed in INPUT mode (if nothing = 1 = defaut value, needs to be inverse later on via the "!")
 
   lineSensors.initFiveSensors();
 
