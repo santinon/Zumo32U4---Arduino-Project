@@ -45,7 +45,7 @@ void setup()
 
   pinMode(FRONT_SENSOR, INPUT_PULLUP); 
 
-  lineSensors.initThreeSensors();
+  lineSensors.initFiveSensors();
 
   waitForButtonAndCountDown();  // executes called function
 
@@ -111,7 +111,7 @@ void DetectEnemy(){
   for (uint8_t i = 0; i < nLevels; i++) {
     Zumo32U4IRPulses::start(Zumo32U4IRPulses::Left, brightnessLevels[i], 420);  // sending PWM-pulsing-signal on LEFT LED using "Zumo32U4IRPulses" class (LED-variable, PWM-duty-cylce proportional brightnesslevel, signal-period ~ 38kHz)
     delayMicroseconds(421); // default pulse (guarantees we are not missing output pulses by reading the sensor too soon)
-    LeftNum += int(!digitalRead(FRONT_SENSOR));
+    LeftNum += int(!digitalRead(FRONT_SENSOR)); // so LeftNum will be high if enemy-zumo is cloth and small if distant (because only the high intensity will reached it)
     //lcd.print(!digitalRead(FRONT_SENSOR));
     Zumo32U4IRPulses::stop();
   }
@@ -120,7 +120,7 @@ void DetectEnemy(){
   for (uint8_t i = 0; i < nLevels; i++) {
     Zumo32U4IRPulses::start(Zumo32U4IRPulses::Right, brightnessLevels[i], 420); // sending PWM-pulsing-signal on RIGHT LED using "Zumo32U4IRPulses" class (LED-variable, PWM-duty-cylce proportional brightnesslevel, signal-period ~ 38kHz)
     delayMicroseconds(421);  // default pulse (guarantees we are not missing output pulses by reading the sensor too soon)
-    RightNum += int(!digitalRead(FRONT_SENSOR));
+    RightNum += int(!digitalRead(FRONT_SENSOR)); // so RightNum will be high if enemy-zumo is cloth and small if distant (because only the high intensity will reached it)
     //lcd.print(!digitalRead(FRONT_SENSOR));
     Zumo32U4IRPulses::stop();
   }
@@ -143,9 +143,14 @@ void FollowEnemy(){
   else if (RightNum > LeftNum and diff >=3) {
     motors.setSpeeds(100,-100);
   }
-  // if not clearly at the left or at the right, somewhere in the middle -> go straight forward
+  // if not clearly at the left or at the right, somewhere in the middle and cloth -> go straight forward
   else{
-    motors.setSpeeds(300,300); 
+    if (LeftNum >= 5 or RightNum>=5){
+      motors.setSpeeds(400,400);
+    }
+    else {
+      motors.setSpeeds(200,200); 
+    } 
   }
   
 }
